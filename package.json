@@ -1,8 +1,20 @@
 {
   "name": "c97-research",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "ssh://git@github.com/magurotuna/c97-research.git",
+  "main": "dist/index.js",
+  "repository": "https://github.com/magurotuna/c97-research.git",
   "author": "Yusuke Tanaka <wing0920@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "puppeteer": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "@types/puppeteer": "^2.0.0",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.2"
+  }
 }
