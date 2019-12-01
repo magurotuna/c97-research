@@ -6,7 +6,10 @@
   "author": "Yusuke Tanaka <wing0920@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "scrape": "ts-node src/index.ts scrape",
+    "images": "ts-node src/index.ts images",
+    "compute": "ts-node src/index.ts compute"
   },
   "dependencies": {
     "puppeteer": "^2.0.0"
