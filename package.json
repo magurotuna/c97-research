@@ -12,6 +12,7 @@
     "compute": "ts-node src/index.ts compute"
   },
   "dependencies": {
+    "cli-progress": "^3.4.0",
     "puppeteer": "^2.0.0"
   },
   "devDependencies": {

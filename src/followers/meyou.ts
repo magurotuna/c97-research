@@ -1,5 +1,6 @@
 import * as puppeteer from "puppeteer";
 import * as fs from "fs";
+import * as cliProgress from "cli-progress";
 
 export const scrapeMeyou = async (): Promise<tweet[]> => {
   const browser = await puppeteer.launch();
@@ -8,8 +9,14 @@ export const scrapeMeyou = async (): Promise<tweet[]> => {
 
   const parsedTweets = [];
 
+  const progressBar = new cliProgress.SingleBar(
+    {},
+    cliProgress.Presets.shades_classic
+  );
+  progressBar.start(UrlGenerator.maxNumber, UrlGenerator.currentNumber);
   let url = UrlGenerator.generate();
   while (url) {
+    progressBar.update(UrlGenerator.currentNumber);
     await page.goto(url);
 
     const parsed = await page.$$eval("tr.tweet", tweets => {
@@ -33,7 +40,7 @@ export const scrapeMeyou = async (): Promise<tweet[]> => {
         const followers = textContentOrDefault(
           t.getElementsByClassName("col5"),
           "-1"
-        ).replace(",", "");
+        ).replace(/,/g, "");
         const numTweets = textContentOrDefault(
           t.getElementsByClassName("col7"),
           "-1"
@@ -51,6 +58,7 @@ export const scrapeMeyou = async (): Promise<tweet[]> => {
 
     url = UrlGenerator.generate();
   }
+  progressBar.stop();
 
   await browser.close();
   return filterInvalidTweets(parsedTweets);
@@ -79,15 +87,18 @@ const filterInvalidTweets = (tweetsToBeFiltered: tweet[]): tweet[] => {
 };
 
 class UrlGenerator {
-  private static currentNumber = 0;
   private static urlBase = "https://meyou.jp/ranking/follower_voice";
+  public static currentNumber = 0;
+  public static deltaNumber = 50;
+  public static maxNumber = 400;
 
   public static generate() {
-    if (UrlGenerator.currentNumber > 350) {
+    if (UrlGenerator.currentNumber > UrlGenerator.maxNumber) {
       return null;
     }
     const url = `${UrlGenerator.urlBase}/${UrlGenerator.currentNumber}`;
-    UrlGenerator.currentNumber = UrlGenerator.currentNumber + 50;
+    UrlGenerator.currentNumber =
+      UrlGenerator.currentNumber + UrlGenerator.deltaNumber;
     return url;
   }
 }
