@@ -1,4 +1,5 @@
 import { scrapeMeyou, saveTweets } from "./followers/meyou";
+import { fetchImages } from "./images/google";
 
 const main = async () => {
   if (
@@ -18,6 +19,7 @@ const main = async () => {
       return;
     }
     case "images": {
+      await fetchImages();
       return;
     }
     case "compute": {
