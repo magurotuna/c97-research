@@ -12,12 +12,18 @@
     "compute": "ts-node src/index.ts compute"
   },
   "dependencies": {
+    "@types/request": "^2.48.3",
     "cli-progress": "^3.4.0",
-    "puppeteer": "^2.0.0"
+    "make-dir": "^3.0.0",
+    "puppeteer": "^2.0.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5"
   },
   "devDependencies": {
+    "@types/make-dir": "^2.1.0",
     "@types/node": "^12.12.14",
     "@types/puppeteer": "^2.0.0",
+    "@types/request-promise": "^4.1.45",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.2"
   }
