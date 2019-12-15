@@ -1,5 +1,6 @@
 import { scrapeMeyou, saveTweets } from "./followers/meyou";
 import { fetchImages } from "./images/google";
+import { computeVision } from "./compute/azure";
 
 const main = async () => {
   if (
