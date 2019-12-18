@@ -2,7 +2,7 @@ import * as puppeteer from "puppeteer";
 import * as fs from "fs";
 import * as cliProgress from "cli-progress";
 
-export const scrapeMeyou = async (): Promise<tweet[]> => {
+export const scrapeMeyou = async (): Promise<Tweet[]> => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto("https://meyou.jp/ranking/follower_voice");
@@ -64,18 +64,18 @@ export const scrapeMeyou = async (): Promise<tweet[]> => {
   return filterInvalidTweets(parsedTweets);
 };
 
-export interface tweet {
+export interface Tweet {
   name: string;
   username: string;
   followers: number;
   tweets: number;
 }
 
-export const saveTweets = (tweets: tweet[]) => {
+export const saveTweets = (tweets: Tweet[]) => {
   fs.writeFileSync("./tweets.json", JSON.stringify(tweets, null, "  "));
 };
 
-const filterInvalidTweets = (tweetsToBeFiltered: tweet[]): tweet[] => {
+const filterInvalidTweets = (tweetsToBeFiltered: Tweet[]): Tweet[] => {
   return tweetsToBeFiltered.filter(t => {
     return (
       t.name !== "name undefined" &&
