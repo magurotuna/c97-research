@@ -62,4 +62,5 @@ typings/
 
 example.png
 dist/
-assets/images/
+assets/
+.envrc

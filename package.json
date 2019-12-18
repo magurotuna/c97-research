@@ -9,11 +9,13 @@
     "start": "ts-node src/index.ts",
     "scrape": "ts-node src/index.ts scrape",
     "images": "ts-node src/index.ts images",
-    "compute": "ts-node src/index.ts compute"
+    "compute": "ts-node src/index.ts compute",
+    "summarize": "ts-node src/index.ts summarize"
   },
   "dependencies": {
     "@types/request": "^2.48.3",
     "cli-progress": "^3.4.0",
+    "csv": "^5.3.1",
     "make-dir": "^3.0.0",
     "puppeteer": "^2.0.0",
     "request": "^2.88.0",

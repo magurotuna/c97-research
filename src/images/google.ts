@@ -1,10 +1,11 @@
 import * as puppeteer from "puppeteer";
 import * as fs from "fs";
 import * as cliProgress from "cli-progress";
-import { tweet } from "../followers/meyou";
+import { Tweet } from "../followers/meyou";
 import * as makeDir from "make-dir";
-import fetch from "node-fetch";
 import * as request from "request";
+import { sleep } from "../utils";
+import { readTweetsJson } from "../utils";
 
 export const fetchImages = async (useG = false) => {
   await makeDir("assets/images");
@@ -31,15 +32,7 @@ export const fetchImages = async (useG = false) => {
   bar.stop();
 };
 
-const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
-
-const readTweetsJson = (jsonPath: string = "tweets.json"): tweet[] => {
-  // TODO: jsonPath にファイルがないときの判定
-  const file = fs.readFileSync(jsonPath, "utf-8");
-  return JSON.parse(file);
-};
-
-const searchY = async (tweet: tweet, page: puppeteer.Page) => {
+const searchY = async (tweet: Tweet, page: puppeteer.Page) => {
   const url = searchUrlY(`"${tweet.name}" 画像`);
   console.log(`fetching ${tweet.name}...`);
 
@@ -88,7 +81,7 @@ const searchY = async (tweet: tweet, page: puppeteer.Page) => {
   await sleep(5000 * Math.random());
 };
 
-const searchG = async (tweet: tweet, page: puppeteer.Page) => {
+const searchG = async (tweet: Tweet, page: puppeteer.Page) => {
   const url = searchUrl(`"${tweet.name}" 画像`);
 
   await page.goto(url, {

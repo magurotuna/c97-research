@@ -1,14 +1,15 @@
 import { scrapeMeyou, saveTweets } from "./followers/meyou";
 import { fetchImages } from "./images/google";
 import { computeVision } from "./compute/azure";
+import summarize from "./summarizer/summarize";
 
 const main = async () => {
   if (
     process.argv.length < 3 ||
-    !["scrape", "images", "compute"].includes(process.argv[2])
+    !["scrape", "images", "compute", "summarize"].includes(process.argv[2])
   ) {
     console.error(
-      "You should run `yarn scrape` or `yarn images` or `yarn compute`."
+      "You should run `yarn scrape` or `yarn images` or `yarn compute` or `yarn summarize`."
     );
     return;
   }
@@ -24,6 +25,11 @@ const main = async () => {
       return;
     }
     case "compute": {
+      await computeVision();
+      return;
+    }
+    case "summarize": {
+      await summarize();
       return;
     }
     default: {
