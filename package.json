@@ -22,6 +22,7 @@
     "request-promise": "^4.2.5"
   },
   "devDependencies": {
+    "@types/cli-progress": "^3.4.0",
     "@types/make-dir": "^2.1.0",
     "@types/node": "^12.12.14",
     "@types/puppeteer": "^2.0.0",

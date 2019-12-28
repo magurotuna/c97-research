@@ -12,6 +12,13 @@
   resolved "https://registry.yarnpkg.com/@types/caseless/-/caseless-0.12.2.tgz#f65d3d6389e01eeb458bd54dc8f52b95a9463bc8"
   integrity sha512-6ckxMjBBD8URvjB6J3NcnuAn5Pkl7t3TizAg+xdlzzQGSPSmBcXf8KoIH0ua/i+tio+ZRUHEXp0HEmvaR4kt0w==
 
+"@types/cli-progress@^3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@types/cli-progress/-/cli-progress-3.4.0.tgz#0c49867f4d5f31a2e74bf504ac268df07ad249b1"
+  integrity sha512-852e0ee/bNHrULAwHyMjOhdvKTjf0worEvwFeoNsW2AitVgprAMbWHETxEEzwfbYW/OexhWpIqLS6m5aYyOyfQ==
+  dependencies:
+    "@types/node" "*"
+
 "@types/make-dir@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@types/make-dir/-/make-dir-2.1.0.tgz#614c89acab04ee428ef28b3c33ae2fbbb7ac8b45"
